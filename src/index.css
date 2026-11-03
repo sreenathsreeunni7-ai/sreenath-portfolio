@@ -81,3 +81,9 @@ body {
     cursor: none;
   }
 }
+
+/* Journey timeline node — lit state toggled by GSAP ScrollTrigger */
+.node-lit {
+  border-color: #ff5b1f !important;
+  background-color: #ff5b1f !important;
+}
