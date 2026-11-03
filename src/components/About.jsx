@@ -89,7 +89,7 @@ export default function About() {
                 <>
                   <img
                     src={portraitSrc}
-                    alt={`${personalInfo.name} — ${personalInfo.role}`}
+                    alt="sreenath — Data analyst, TAP Academy student"
                     className="w-full h-full object-cover grayscale contrast-125"
                   />
                   {/* Signal-orange tint layer */}
