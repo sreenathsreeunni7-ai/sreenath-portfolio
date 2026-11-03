@@ -1,28 +1,83 @@
 @import "tailwindcss";
 
+/* ─── Design tokens ─────────────────────────────────────────────────────── */
 @theme {
-  /* Custom animation: floating effect used on hero elements */
-  --animate-float: float 6s ease-in-out infinite;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
+  --color-ink:    #08090c;   /* bg-ink    — near-black background   */
+  --color-panel:  #0f1116;   /* bg-panel  — card / surface          */
+  --color-bone:   #e8e6df;   /* text-bone — primary text            */
+  --color-dim:    #8a8f98;   /* text-dim  — secondary / muted text  */
+  --color-signal: #ff5b1f;   /* text/bg/border-signal — accent      */
 }
 
+/* ─── Base ──────────────────────────────────────────────────────────────── */
 html {
-  scroll-behavior: smooth;
+  background: #08090c;
+}
+
+/* Lenis smooth-scroll setup */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 body {
   margin: 0;
-  padding: 0;
-  background-color: #000;
-  color: #fff;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #08090c;
+  color: #e8e6df;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── HUD grid ──────────────────────────────────────────────────────────── */
+/* Faint technical grid: two 1-px lines per 64 px cell */
+.hud-grid {
+  background-image:
+    linear-gradient(rgba(232, 230, 223, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 230, 223, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ─── HUD frame ─────────────────────────────────────────────────────────── */
+/* Draws small signal-orange corner brackets at top-left and bottom-right */
+.hud-frame {
+  position: relative;
+}
+.hud-frame::before,
+.hud-frame::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+/* top-left corner bracket */
+.hud-frame::before {
+  top: 0;
+  left: 0;
+  border-top: 2px solid #ff5b1f;
+  border-left: 2px solid #ff5b1f;
+}
+/* bottom-right corner bracket */
+.hud-frame::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid #ff5b1f;
+  border-right: 2px solid #ff5b1f;
+}
+
+/* ─── Custom cursor ─────────────────────────────────────────────────────── */
+/* Hide the OS cursor when the custom JS cursor is active */
+@media (pointer: fine) {
+  body.has-cursor,
+  body.has-cursor a,
+  body.has-cursor button {
+    cursor: none;
+  }
 }

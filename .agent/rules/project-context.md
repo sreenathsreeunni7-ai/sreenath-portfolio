@@ -1,11 +1,11 @@
 # Project context
-React 19 + Vite + Tailwind CSS 4 single-page developer portfolio. Plain JavaScript (JSX), no TypeScript, no router. Libraries: framer-motion, aos, @emailjs/browser. Style: Tailwind utility classes only (no extra CSS files except src/index.css). Colours: pure black / #0a0a0a dark sections, white sections for contrast, accent red #ff2a2a. Font: Inter.
+React 19 + Vite + Tailwind CSS 4 single-page developer portfolio, "Signal HUD" style: dark, technical, motion-led, like a heads-up display. Plain JavaScript (JSX), no TypeScript, no router. Libraries: gsap (with ScrollTrigger), lenis (smooth scroll), three (3D centrepiece), @emailjs/browser. Style: Tailwind utility classes only (no extra CSS files except src/index.css). Colours (Tailwind theme names): ink #08090c (background), panel #0f1116 (cards), bone #e8e6df (main text), dim #8a8f98 (secondary text), signal #ff5b1f (the ONE accent colour). Fonts: Space Grotesk (font-sans) for headings and text, JetBrains Mono (font-mono) for small uppercase HUD labels with wide letter spacing. Sharp corners (no rounded cards), thin 1px borders in bone/10, corner brackets (.hud-frame), faint grid (.hud-grid).
 
 # Architecture rules
 - ALL content (text, links, lists) lives in src/data/portfolioData.js and is imported by components. Never hard-code personal content in components.
-- One component per section in src/components/, composed in order in src/App.jsx.
-- Navigation is anchor links (#home, #about, #skills, #process, #projects, #contact) with CSS smooth scrolling. No router.
-- Assets: src/assets/about/profile.png (illustrated portrait), src/assets/hero/hero.mp4 (hero video). Public files in /public.
+- One component per section in src/components/, composed in order in src/App.jsx: Cursor, Hud, then <main> with Hero, About, (IntroVideo), Projects, Journey, Contact, then Footer. Navigation is anchor links (#home, #about, #projects, #journey, #contact) scrolled smoothly by Lenis. No router.
+- Assets: src/assets/about/about-portrait.(png|jpg|webp) and src/assets/projects/project-1.(png|jpg|webp) etc. Components load them with import.meta.glob and show a placeholder when a file is missing.
+- Animation rules: Lenis is driven by gsap.ticker and calls ScrollTrigger.update on scroll (one shared loop). Register ScrollTrigger once. Create animations inside useEffect with gsap.context() or gsap.matchMedia() and always clean up. Entrance animations use `once: true`: NO element may ever become invisible again after it has appeared. Call ScrollTrigger.refresh() after load. Respect prefers-reduced-motion (skip smooth scroll, the cursor, the decode effect and heavy motion). three.js: dispose geometries, materials and the renderer on unmount and pause rendering when off-screen.
 - Keep code clean and lightly commented in a beginner-friendly way. After every task run `npm run lint` and fix problems.
 
 # Credit conventions (apply automatically wherever relevant)

@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="50" fill="#ff2a2a"/>
-  <text x="50" y="68" text-anchor="middle" font-family="serif" font-size="60" font-weight="bold" fill="#ffffff">P</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Near-black rounded square background -->
+  <rect width="64" height="64" rx="12" fill="#08090c"/>
+  <!-- Signal-orange pulse line: M14 32h12l6-14 6 28 6-14h6 -->
+  <polyline
+    points="14,32 26,32 32,18 38,46 44,32 50,32"
+    fill="none"
+    stroke="#ff5b1f"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 </svg>
